@@ -177,9 +177,13 @@ public class ReactNavigationCoordinator {
   public ReadableMap getInitialConfigForModuleName(String screenName) {
     return getOrDefault(screenName).initialConfig;
   }
-
+  
   public void start(final Application application) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(application)) {
+    start(application, true);
+  }
+
+  public void start(final Application application, final Boolean isDebug) {
+    if (isDebug && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(application)) {
       handleOverlayPermissionsMissing(application);
       return;
     }
