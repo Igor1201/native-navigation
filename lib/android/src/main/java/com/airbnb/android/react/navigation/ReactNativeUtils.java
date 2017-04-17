@@ -64,8 +64,7 @@ public final class ReactNativeUtils {
   /** Emits a JS event with the provided name and data if the rect context is initialized */
   static void maybeEmitEvent(ReactContext context, String name, Object data) {
     if (context == null) {
-      throw new IllegalArgumentException(
-          String.format("reactContext is null (calling event: %s)", name));
+      return;
     }
     if (context.hasActiveCatalystInstance()) {
       try {
